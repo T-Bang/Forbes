@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE web-app
+    PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+    "http://java.sun.com/dtd/web-app_2_3.dtd">
+<web-app>
+  <display-name>Forbes Application</display-name>
+  <description>
+    This web application show a list of articles
+  </description>
+
+  <servlet>
+    <servlet-name>articles</servlet-name>
+    <display-name>Articles</display-name>
+    <description>A servlet that does all the work</description>
+    <servlet-class>controllers.SearchController</servlet-class>
+
+    <init-param>
+         <param-name>RdbDriverClass</param-name>
+         <param-value>com.mysql.jdbc.Driver</param-value>
+    </init-param>
+    <init-param>
+         <param-name>RdbURL</param-name>
+         <param-value>jdbc:mysql://localhost:3306/Forbes?allowPublicKeyRetrieval=true&amp;useSSL=false</param-value>
+    </init-param>
+    <init-param>
+         <param-name>RdbUserId</param-name>
+         <param-value>ForbesApp</param-value>
+    </init-param>
+    <init-param>
+         <param-name>RdbPassword</param-name>
+         <param-value>Forbes</param-value>
+    </init-param>
+    <load-on-startup>0</load-on-startup>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>articles</servlet-name>
+    <url-pattern>/article/*</url-pattern>
+  </servlet-mapping>
+
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>

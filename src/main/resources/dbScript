@@ -1,0 +1,17 @@
+create database Forbes;
+
+create user ForbesApp identified by 'ForbesApp';
+
+grant all on Forbes.* to ForbesApp;
+
+use Forbes;
+
+drop table if exists articles;
+create table articles (
+id integer(10) not null auto_increment,
+	title varchar(500),
+	content varchar(1500),
+	author varchar (500),
+primary key (id)
+);
+

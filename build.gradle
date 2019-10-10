@@ -1,0 +1,42 @@
+plugins {
+    id 'java'
+    id 'war'
+}
+
+group 'Forbes'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.9
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    moreLibs
+}
+
+dependencies {
+    compile "javax.servlet:javax.servlet-api:3.0.1"
+    compile "org.apache.commons:commons-lang3:3.7"
+    compile "org.apache.logging.log4j:log4j-api:2.11.2"
+    compile "org.apache.logging.log4j:log4j-core:2.11.2"
+    compile "org.apache.logging.log4j:log4j-web:2.11.2"
+    compile "mysql:mysql-connector-java:5.1.47"
+    compile "commons-codec:commons-codec:1.12"
+    compile "org.mockito:mockito-core:+"
+
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+war {
+    from 'src/rootContent'
+    webInf { from 'src/main/webapp/' }
+    webXml = file('src/main/web.xml')
+}
+
+war.doLast {
+    ant.unzip(src: war.archivePath, dest: "$buildDir/exploded")
+}
+
